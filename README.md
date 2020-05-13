@@ -1,7 +1,7 @@
 <h1 align="center">RoService</h1>
 
 <div align="center">
-	ModuleScript loader with reusable and easy unified server-client modules for faster game development on Roblox
+	A framework to improve game development on the ROBLOX platform.
 </div>
 
 ## About
