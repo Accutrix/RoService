@@ -16,7 +16,7 @@ function Install(HttpEnabled)
 		ServicesModule.Name = "Services"
 		
 		local Success, Result = pcall(function()
-			return HttpService:GetAsync("https://raw.githubusercontent.com/Accutrix/RoService/src/Services.lua")
+			return HttpService:GetAsync("https://raw.githubusercontent.com/Accutrix/RoService/master/src/Services.lua")
 		end)
 		
 		if Success then
