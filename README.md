@@ -11,5 +11,5 @@ RoService is a service-driven framework intended to improve module organization 
 To install RoService, simply paste the following code into your command bar in ROBLOX studio.
 
 ```lua
-local h = game:GetService("HttpService") loadstring(h:GetAsync("https://raw.githubusercontent.com/Accutrix/RoService/install.lua"))(h.HttpEnabled)
+local h = game:GetService("HttpService") loadstring(h:GetAsync("https://raw.githubusercontent.com/Accutrix/RoService/master/install.lua"))(h.HttpEnabled)
 ```
