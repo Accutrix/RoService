@@ -38,3 +38,5 @@ function Install(HttpEnabled)
 		warn("RoService - Could not install properly | " .. Fail)
 	end
 end
+
+Install(...)
