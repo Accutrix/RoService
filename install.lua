@@ -1,4 +1,5 @@
 -- OptimisticSide
+-- https://github.com/Accutrix/RoService
 
 local HttpService = game:GetService("HttpService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
