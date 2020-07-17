@@ -11,9 +11,24 @@ local Services = { }
 
 
 function Services:FindService(ServiceFolder, ServiceName)
-	for _, SubFolder in pairs(ServiceFolder:GetChildren()) do
-		for _, Service in pairs(SubFolder:GetChildren()) do
+	for _, SubFolder in ipairs(ServiceFolder:GetChildren()) do
+		for _, Service in ipairs(SubFolder:GetChildren()) do
 			if ServiceName == Service.Name or ServiceName == Service.Name .. "Service" then
+				if Service:IsA("IntValue") or Service:IsA("NumberValue") or Service:IsA("StringValue") or Service:IsA("ObjectValue") then
+					if typeof(Service.Value) == "string" and not tonumber(Service.Value) then
+						local RequirePath = string.split(Service.Value, ".")
+						
+						local Parent = RequirePath[1] == "script" and Service or game
+						for _, Child in ipairs({select(2, unpack(RequirePath))}) do
+							Parent = Parent:WaitForChild(Child)
+						end
+						if Parent:IsA("ModuleScript") then
+							return Parent
+						end
+					else
+						return tonumber(Service.Value) or Service.Value
+					end
+				end
 				return Service
 			end
 		end
