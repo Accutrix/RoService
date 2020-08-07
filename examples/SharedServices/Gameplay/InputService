@@ -1,0 +1,49 @@
+-- OptimisticSide
+-- https://github.com/Accutrix/RoService
+
+local UserInputService = game:GetService("UserInputService")
+local ContextActionService = game:GetService("ContextActionService")
+
+local InputService = {}
+
+InputService.InputBinds = {}
+InputService.CurrentInput = {}
+
+
+function InputService:BindToInput(InputKeys, Callback)
+	table.insert(InputService.InputBinds, {
+		Input = InputKeys;
+		Callback = Callback;
+	})
+end
+
+
+function InputService:CheckBindValidity(Bind)
+	for _, KeyCode in pairs(Bind.Input) do
+		if not table.find(InputService.CurrentInput, KeyCode) then
+			return
+		end
+	end
+	Bind.Callback()
+end
+
+
+UserInputService.InputBegan:Connect(function(Input, GameProcessed)
+	table.insert(InputService.CurrentInput, Input.KeyCode)
+	for _, Bind in pairs(InputService.InputBinds) do
+		InputService:CheckBindValidity(Bind)
+	end
+end)
+
+
+UserInputService.InputEnded:Connect(function(Input, GameProcessed)
+	local InputIndex = table.find(CurrentInput, Input.KeyCode)
+	if InputIndex then
+		table.remove(CurrentInput, InputIndex)
+	end
+end)
+
+
+return setmetatable(InputService, {
+    __index = UserInputService
+})
